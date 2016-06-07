@@ -4,11 +4,24 @@
   </head>
 <body>
 
+<?php
+$etunimiErr = $sukunimiErr = $ryhmäErr = $sähköpostiErr = $otsikkoErr = "";
+$etunimi = $sukunimi = $ryhmä = $sähköposti = $otsikko = "";
+
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+if (empty($_POST["etunimi"])) {
+$etunimiErr = "Syötä etunimi";}
+else {
+$etunimi = testi($_POST["etunimi"]);
+?>
+
 <h1>Data Center Support System</h1>
 <p1>Hei, kun metsään huutaa, niin DC vastaa.</p1><br><br>
 
   <form action="DCSS.php" method="post">
-    Etunimi: <input type="text" name="etunimi"><br><br>
+    Etunimi: <input type="text" name="etunimi">
+    <span class="error">* <?php echo $etunimiErr;?></span>
+    <br><br>
     Sukunimi: <input type="text" name="sukunimi"><br><br>
     Ryhmä: <input type="text" name="ryhmä"><br><br>
     Sähköposti: <input type="text" name="sähköposti"><br><br>
