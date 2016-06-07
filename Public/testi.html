@@ -71,7 +71,7 @@ $tag = testi($_POST["tag"]);
 <p2><span class="error">* pakollinen kenttä.</span></p2><br><br>
 
   <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">
-    Etunimi: <input type="text" name="etunimi" value="<?php echo $etunimi;?>">
+    Etunimi: <input type="text" name="etunimi">
     <span class="error">* <?php echo $etunimiErr;?></span>
     <br><br>
     Sukunimi: <input type="text" name="sukunimi"><br><br>
