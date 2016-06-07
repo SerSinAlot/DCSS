@@ -1,25 +1,77 @@
 <html>
   <head>
-    <title>Welcome wanker!</title>
+    <title>DCSS</title>
+    <style>
+      .error {color: #FF0000;}
+    </style>
   </head>
 <body>
 
 <?php
-$etunimiErr = $sukunimiErr = $ryhmäErr = $sähköpostiErr = $otsikkoErr = "";
-$etunimi = $sukunimi = $ryhmä = $sähköposti = $otsikko = "";
+$etunimiErr = $sukunimiErr = $ryhmäErr = $sähköpostiErr = $puhelinErr = $otsikkoErr = $tagErr = "";
+$etunimi = $sukunimi = $ryhmä = $sähköposti = $puhelin = $otsikko = $tag = "";
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
 if (empty($_POST["etunimi"])) {
 $etunimiErr = "Syötä etunimi";}
 else {
 $etunimi = testi($_POST["etunimi"]);
+if (!preg_match("/^[a-ÖA-Ö -]*$/",$etunimi)) {
+$etunimiErr = "Vain kirjaimia, välilyöntejä tai -viivoja";
+}}
+if (empty($_POST["sukunimi"])) {
+$sukunimiErr = "Syötä sukunimi";}
+else {
+$sukunimi = testi($_POST["sukunimi"]);
+if (!preg_match("/^[a-öA-Ö -]*$/",$sukunimi)) {
+$sukunimiErr = "Vain kirjaimia, välilyöntejä tai -viivoja";
+}}
+if (empty($_POST["ryhmä"])) {
+$ryhmäErr = "Syötä ryhmä";}
+else {
+$ryhmä = testi($_POST["ryhmä"]);
+if (!preg_match("/^[a-ÖA-Ö]*$/",$ryhmä)) {
+$ryhmä = "Vain kirjaimia";
+}}
+if (empty($_POST["sähköposti"])) {
+$sähköpostiErr = "Syötä sähköposti";}
+else {
+$sähköposti = testi($_POST["sähköposti"]);
+if (!filter_var($sähköposti, FILTER_VALIDATE_EMAIL)) {
+$sähköposti = "Syötä oikea sähköpostiosoite";
+}}
+if (empty($_POST["puhelin"])) {
+$puhelinErr = ""}
+else {
+$puhelin = testi($_POST["puhelin"]);
+if (!preg_match("/^[0-9 +]*$/",$puhelin)) {
+$puhelin = "Syötä oikea puhelinnumero tai jätä tyhjäksi";
+}}
+if (empty($_POST["otsikko"])) {
+$otsikkoErr = "Anna otsikko";}
+else {
+$otsikko = testi($_POST["otsikko"]);
+if (!preg_match("/^[a-öA-Ö0-9 -]*$/",$otsikko)) {
+$otsikkoErr = "Ei erikoismerkkejä";
+}}
+if (empty($_POST["viesti"])) {
+$viestiErr = "Kirjoita viesti";}
+else {
+$viesti = testi($_POST["viesti"]);
+}
+if (empty($_POST["tag"])) {
+$tagErr = "Valitse Tag";}
+else {
+$tag = testi($_POST["tag"]);
+}
 ?>
 
 <h1>Data Center Support System</h1>
-<p1>Hei, kun metsään huutaa, niin DC vastaa.</p1><br><br>
+<p1>Hei, kun metsään huutaa, niin DC vastaa.</p1><br>
+<p2><span class="error">* pakollinen kenttä.</span></p2><br><br>
 
-  <form action="DCSS.php" method="post">
-    Etunimi: <input type="text" name="etunimi">
+  <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">
+    Etunimi: <input type="text" name="etunimi" value="<?php echo $etunimi;?>">
     <span class="error">* <?php echo $etunimiErr;?></span>
     <br><br>
     Sukunimi: <input type="text" name="sukunimi"><br><br>
