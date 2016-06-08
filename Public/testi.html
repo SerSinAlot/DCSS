@@ -61,29 +61,61 @@ if (empty($_POST["tag"])) {
 $tagErr = "Valitse Tag";}
 else {
 $tag = testi($_POST["tag"]);
+}}
+
+function testi($data) {
+	$data=trim($data);
+	$data=stripcslashes($data);
+	$data=htmlspecialchars($data);
+	return $data;
 }
 ?>
 
 <h1>Data Center Support System</h1>
-<p1>Hei, kun metsään huutaa, niin DC vastaa.</p1><br>
+<p1>Hei, kun metsään huutaa, niin DC vastaa.</p1><br><br>
 <p2><span class="error">* pakollinen kenttä.</span></p2><br><br>
 
-  <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>
-    Etunimi: <input type="text" name="etunimi">
-    <span class="error">* <?php echo $etunimiErr;?></span>
-    <br><br>
-    Sukunimi: <input type="text" name="sukunimi"><br><br>
-    Ryhmä: <input type="text" name="ryhmä"><br><br>
-    Sähköposti: <input type="text" name="sähköposti"><br><br>
-    Puhelin: <input type="text" name="puhelin"><br><br>
-    Otsikko: <input type="text" name="otsikko"><br><br>
-    Viesti: <textarea name="viesti" rows="5" cols="40"></textarea><br><br>
-    Tag:
+  <form class="form-horisontaalinen" role="form" method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>
+	<label class="otsikko">Etunimi:</label>
+	<div class="kenttä">
+	<input type="text" name="etunimi" placeholder="Etunimi">
+	<span class="error">* <?php echo $etunimiErr;?></span>
+	</div><br>
+	<label class="otsikko">Sukunimi:</label>
+	<div class="kenttä">
+	<input type="text" name="sukunimi" placeholder="Sukunimi">
+	<span class="error">* <?php echo $sukunimiErr;?></span>
+	</div><br>
+	<label class="otsikko">Ryhmä:</label>
+	<div class="kenttä">
+	<input type="text" name="ryhmä" placeholder="Ryhmätunnus">
+	<span class="error">* <?php echo $ryhmäErr;?></span>
+	</div><br>
+    <label class="otsikko">Sähköposti:</label>
+	<div class="kenttä">
+	<input type="text" name="sähköposti" placeholder="nimi@kamk.fi">
+	<span class="error">* <?php echo $sähköpostiErr;?></span>
+	</div><br>
+	<label class="otsikko">Puhelin:</label>
+	<div class="kenttä">
+	<input type="text" name="puhelin" placeholder="0102345678">
+	</div><br>
+	<label class="otsikko">Otsikko:</label>
+	<div class="kenttä">
+	<input type="text" name="otsikko" placeholder="Otsikko">
+	<span class="error">* <?php echo $otsikkoErr;?></span>
+	</div><br>
+	<label class="otsikko">Viesti:</label>
+	<div class="kenttä">
+	<textarea name="viesti" rows="5" cols="40" placeholder="Lyhyt kuvaus tehtävästä."></textarea>
+	<span class="error">* <?php echo $viestiErr;?></span>
+	</div><br>
+	Tag:
     <input type="radio" name="tag" value="peliserveri">Peliserveri
     <input type="radio" name="tag" value="nettisivu">Nettisivu
-    <br><br>
-    <input type="submit">
+	<span class="error">* <?php echo $tagErr;?></span>
+	<br><br>
+    <input type="submit" value="Lähetä">
   </form>
-
 </body>
 </html>
