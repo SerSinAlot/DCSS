@@ -8,8 +8,8 @@ $dbname="DCSS"
 $yhteys = new mysqli_connect($servername, $username, $password, $dbname);
 
 /*Testaa yhteys*/
-if ($yhteys->connect_error) {
-die("Yhteys epäonnistui: " . $yhteys->connect_error);
+if ($yhteys === false) {
+die("Yhteys epäonnistui: " . mysqli_connect_error());
 }
 echo "Yhteys onnistui";
 
