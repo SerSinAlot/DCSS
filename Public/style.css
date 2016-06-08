@@ -1,8 +1,16 @@
+/* Tällä muokataan koko sivun näköisyyttä */
 body {
-background-color: lightblue;
+background-color: white;
 }
 
+/* Tällä muokataan otsikon näköisyyttä */
 h1 {
-color: navy;
+color: #880000;
+margin-left: 20px;
+}
+
+/* jnejnejnejne */
+p1 {
+color: #881100;
 margin-left: 20px;
 }
