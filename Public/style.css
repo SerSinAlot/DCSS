@@ -3,14 +3,31 @@ body {
 background-color: white;
 }
 
+.error {color: FF0000;}
+
 /* Tällä muokataan otsikon näköisyyttä */
 h1 {
 color: #880000;
 margin-left: 20px;
 }
 
-/* jnejnejnejne */
-p1 {
+/* Tekstin muokkaus */
+p1, p2 {
 color: #881100;
 margin-left: 20px;
+}
+
+/*Lomakkeen muokkaus*/
+form {
+	margin-left: 20px;
+}
+
+/*Viestikentän muokkaus*/
+textarea {
+	resize: none;
+}
+
+/*Valinta- sekä lähetysnappien muokkaus*/
+input[type=radio], [type=submit] {
+	cursor: pointer;
 }
