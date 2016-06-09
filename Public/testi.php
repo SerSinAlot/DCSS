@@ -40,7 +40,7 @@ if (!filter_var($sähköposti, FILTER_VALIDATE_EMAIL)) {
 $sähköposti = "Syötä oikea sähköpostiosoite";
 }}
 if (empty($_POST["puhelin"])) {
-$puhelinErr = ""}
+$puhelinErr = "";}
 else {
 $puhelin = testi($_POST["puhelin"]);
 if (!preg_match("/^[0-9 +]*$/",$puhelin)) {
