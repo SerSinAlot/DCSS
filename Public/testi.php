@@ -12,57 +12,72 @@ $etunimi = $sukunimi = $ryhmä = $sähköposti = $puhelin = $otsikko = $viesti =
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
 if (empty($_POST["etunimi"])) {
-$etunimiErr = "Syötä etunimi";}
+	$etunimiErr = "Syötä etunimi";
+	}
 else {
-$etunimi = testi($_POST["etunimi"]);
-if (!preg_match("/^[a-ÖA-Ö -]*$/",$etunimi)) {
-$etunimiErr = "Vain kirjaimia, välilyöntejä tai -viivoja";
-}}
+	$etunimi = testi($_POST["etunimi"]);
+	if (!preg_match("/^[a-ÖA-Ö -]*$/",$etunimi)) {
+		$etunimiErr = "Vain kirjaimia, välilyöntejä tai -viivoja";
+	}
+}
 if (empty($_POST["sukunimi"])) {
-$sukunimiErr = "Syötä sukunimi";}
+	$sukunimiErr = "Syötä sukunimi";
+	}
 else {
-$sukunimi = testi($_POST["sukunimi"]);
-if (!preg_match("/^[a-öA-Ö -]*$/",$sukunimi)) {
-$sukunimiErr = "Vain kirjaimia, välilyöntejä tai -viivoja";
-}}
+	$sukunimi = testi($_POST["sukunimi"]);
+	if (!preg_match("/^[a-öA-Ö -]*$/",$sukunimi)) {
+		$sukunimiErr = "Vain kirjaimia, välilyöntejä tai -viivoja";
+	}
+}
 if (empty($_POST["ryhmä"])) {
-$ryhmäErr = "Syötä ryhmä";}
+	$ryhmäErr = "Syötä ryhmä";
+}
 else {
-$ryhmä = testi($_POST["ryhmä"]);
-if (!preg_match("/^[a-ÖA-Ö]*$/",$ryhmä)) {
-$ryhmä = "Vain kirjaimia";
-}}
+	$ryhmä = testi($_POST["ryhmä"]);
+	if (!preg_match("/^[a-ÖA-Ö 0-9]*$/",$ryhmä)) {
+		$ryhmä = "Vain kirjaimia";
+	}
+}
 if (empty($_POST["sähköposti"])) {
-$sähköpostiErr = "Syötä sähköposti";}
+	$sähköpostiErr = "Syötä sähköposti";
+	}
 else {
-$sähköposti = testi($_POST["sähköposti"]);
-if (!filter_var($sähköposti, FILTER_VALIDATE_EMAIL)) {
-$sähköposti = "Syötä oikea sähköpostiosoite";
-}}
+	$sähköposti = testi($_POST["sähköposti"]);
+	if (!filter_var($sähköposti, FILTER_VALIDATE_EMAIL)) {
+		$sähköposti = "Syötä oikea sähköpostiosoite";
+	}
+}
 if (empty($_POST["puhelin"])) {
-$puhelinErr = "";}
+	$puhelinErr = "";
+	}
 else {
-$puhelin = testi($_POST["puhelin"]);
-if (!preg_match("/^[0-9 +]*$/",$puhelin)) {
-$puhelin = "Syötä oikea puhelinnumero tai jätä tyhjäksi";
-}}
+	$puhelin = testi($_POST["puhelin"]);
+	if (!preg_match("/^[0-9 +]*$/",$puhelin)) {
+		$puhelin = "Syötä oikea puhelinnumero tai jätä tyhjäksi";
+	}
+}
 if (empty($_POST["otsikko"])) {
-$otsikkoErr = "Anna otsikko";}
+	$otsikkoErr = "Anna otsikko";
+	}
 else {
-$otsikko = testi($_POST["otsikko"]);
-if (!preg_match("/^[a-öA-Ö0-9 -]*$/",$otsikko)) {
-$otsikkoErr = "Ei erikoismerkkejä";
-}}
+	$otsikko = testi($_POST["otsikko"]);
+	if (!preg_match("/^[a-öA-Ö0-9 -]*$/",$otsikko)) {
+		$otsikkoErr = "Ei erikoismerkkejä";
+	}
+}
 if (empty($_POST["viesti"])) {
-$viestiErr = "Kirjoita viesti";}
+	$viestiErr = "Kirjoita viesti";
+	}
 else {
-$viesti = testi($_POST["viesti"]);
+	$viesti = testi($_POST["viesti"]);
 }
 if (empty($_POST["tag"])) {
-$tagErr = "Valitse Tag";}
+	$tagErr = "Valitse Tag";
+	}
 else {
-$tag = testi($_POST["tag"]);
-}}
+	$tag = testi($_POST["tag"]);
+	}
+}
 
 function testi($data) {
 	$data=trim($data);
