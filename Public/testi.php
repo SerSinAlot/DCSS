@@ -7,8 +7,8 @@
 <body>
 
 <?php
-$etunimiErr = $sukunimiErr = $ryhmäErr = $sähköpostiErr = $puhelinErr = $otsikkoErr = $tagErr = "";
-$etunimi = $sukunimi = $ryhmä = $sähköposti = $puhelin = $otsikko = $viesti = $tag = "";
+$etunimiErr = $sukunimiErr = $luokkaErr = $emailErr = $puhelinErr = $otsikkoErr = $tagErr = "";
+$etunimi = $sukunimi = $luokka = $email = $puhelin = $otsikko = $viesti = $tag = "";
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
 if (empty($_POST["etunimi"])) {
@@ -30,21 +30,21 @@ else {
 	}
 }
 if (empty($_POST["ryhmä"])) {
-	$ryhmäErr = "Syötä ryhmä";
+	$luokkaErr = "Syötä ryhmä";
 }
 else {
-	$ryhmä = testi($_POST["ryhmä"]);
+	$luokka = testi($_POST["ryhmä"]);
 	if (!preg_match("/^[a-ÖA-Ö 0-9]*$/",$ryhmä)) {
-		$ryhmä = "Vain kirjaimia";
+		$luokka = "Vain kirjaimia";
 	}
 }
 if (empty($_POST["sähköposti"])) {
-	$sähköpostiErr = "Syötä sähköposti";
+	$emailErr = "Syötä sähköposti";
 	}
 else {
-	$sähköposti = testi($_POST["sähköposti"]);
+	$email = testi($_POST["sähköposti"]);
 	if (!filter_var($sähköposti, FILTER_VALIDATE_EMAIL)) {
-		$sähköposti = "Syötä oikea sähköpostiosoite";
+		$email = "Syötä oikea sähköpostiosoite";
 	}
 }
 if (empty($_POST["puhelin"])) {
@@ -105,12 +105,12 @@ function testi($data) {
 	<label class="otsikko">Ryhmä:</label>
 	<div class="kenttä">
 	<input type="text" name="ryhmä" placeholder="Ryhmätunnus">
-	<span class="error">* <?php echo $ryhmäErr;?></span>
+	<span class="error">* <?php echo $luokkaErr;?></span>
 	</div><br>
     	<label class="otsikko">Sähköposti:</label>
 	<div class="kenttä">
 	<input type="text" name="sähköposti" placeholder="nimi@kamk.fi">
-	<span class="error">* <?php echo $sähköpostiErr;?></span>
+	<span class="error">* <?php echo $emailErr;?></span>
 	</div><br>
 	<label class="otsikko">Puhelin:</label>
 	<div class="kenttä">
