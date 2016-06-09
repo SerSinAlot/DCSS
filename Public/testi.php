@@ -5,7 +5,6 @@
     <title>DCSS</title>
   </head>
 <body>
-</html>
 
 <?php
 $etunimiErr = $sukunimiErr = $ryhmäErr = $sähköpostiErr = $puhelinErr = $otsikkoErr = $tagErr = "";
@@ -73,7 +72,6 @@ function testi($data) {
 }
 ?>
 
-<html>
 <h1>Data Center Support System</h1>
 <p1>Hei, kun metsään huutaa, niin DC vastaa.</p1><br><br>
 <p2><span class="error">* pakollinen kenttä.</span></p2><br><br>
