@@ -123,7 +123,7 @@ function testi($data) {
 	</div><br>
 	<label class="otsikko">Viesti:</label>
 	<div class="kenttä">
-	<textarea name="viesti" rows="5" cols="40" placeholder="Lyhyt kuvaus tehtävästä."></textarea>
+	<textarea name="viesti" rows="5" cols="40" maxlength="200" placeholder="Lyhyt kuvaus tehtävästä (max 200 merkkiä)"></textarea>
 	<span class="error">* <?php echo $viestiErr;?></span>
 	</div><br>
 	Tag:
