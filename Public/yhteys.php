@@ -23,7 +23,7 @@ $viesti=mysqli_real_escape_string($yhteys, $_POST['Viesti']);
 $tag=mysqli_real_escape_string($yhteys, $_POST['Tag']);
 
 $sql="INSERT INTO `Tiketit`(`Etunimi`, `Sukunimi`, `Ryhmä`, `Email`, `PuhNro`, `Otsikko`, `Viesti`, `Tag`)
-VALUES ('$etunimi', '$sukunimi', '$luokka', '$email', '$puhelin', '$otsikko', '$viesti', '$tag')"
+VALUES ('$etunimi', '$sukunimi', '$luokka', '$email', '$puhelin', '$otsikko', '$viesti', '$tag')";
 if(mysqli-query($yhteys, $sql)) {
 	echo "Tiedot tallennettu onnistuneesti.";
 } else {
