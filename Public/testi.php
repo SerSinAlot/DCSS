@@ -34,7 +34,7 @@ if (empty($_POST["ryhmä"])) {
 }
 else {
 	$luokka = testi($_POST["ryhmä"]);
-	if (!preg_match("/^[a-ÖA-Ö 0-9]*$/",$ryhmä)) {
+	if (!preg_match("/^[a-ÖA-Ö 0-9]*$/",$luokka)) {
 		$luokka = "Vain kirjaimia";
 	}
 }
@@ -43,7 +43,7 @@ if (empty($_POST["sähköposti"])) {
 	}
 else {
 	$email = testi($_POST["sähköposti"]);
-	if (!filter_var($sähköposti, FILTER_VALIDATE_EMAIL)) {
+	if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
 		$email = "Syötä oikea sähköpostiosoite";
 	}
 }
