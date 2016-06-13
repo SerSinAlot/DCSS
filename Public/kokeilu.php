@@ -6,7 +6,7 @@
 <body>
 
 <form action="koeyhteys.php" method="post">
-Lempielokuva: <input type="text" name="formelokuva" maxlenght="20" value="<?php=$elokuva;?>">
+Lempielokuva: <input type="text" name="formelokuva" maxlenght="20" value="<?=$elokuva;?>">
 <input type="submit" name="formsubmit" value="Lähetä">
 </form>
 </body>
