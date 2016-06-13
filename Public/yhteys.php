@@ -1,6 +1,6 @@
 <?php
 $servername="192.168.206.159";
-$username="joni";
+$username="webuser@192.168.206.150";
 $password="Passw0rd";
 $dbname="DCSS";
 
