@@ -91,7 +91,7 @@ function testi($data) {
 <p1>Hei, kun metsään huutaa, niin DC vastaa.</p1><br><br>
 <p2><span class="error">* pakollinen kenttä.</span></p2><br><br>
 
-  <form method="post" action="yhteys.php">
+  <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">
 	<label class="otsikko">Etunimi:</label>
 	<div class="kenttä">
 	<input type="text" name="etunimi" placeholder="Etunimi">
