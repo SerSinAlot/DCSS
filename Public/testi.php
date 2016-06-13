@@ -133,5 +133,19 @@ function testi($data) {
 	<br><br>
     <input type="submit" value="Lähetä">
   </form>
+  
+  <?php
+echo "<h2>Your Input:</h2>";
+echo $etunimi;
+echo "<br>";
+echo $sukunimi;
+echo "<br>";
+echo $luokka;
+echo "<br>";
+echo $email;
+echo "<br>";
+echo $puhelin;
+?>
+  
 </body>
 </html>
