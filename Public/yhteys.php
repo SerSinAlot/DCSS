@@ -13,14 +13,14 @@ if (!$yhteys) {
 }
 echo "Yhteys onnistui";
 
-$etunimi=mysqli_real_escape_string($yhteys, $_POST['Etunimi']);
-$sukunimi=mysqli_real_escape_string($yhteys, $_POST['Sukunimi']);
-$luokka=mysqli_real_escape_string($yhteys, $_POST['Ryhmä']);
-$email=mysqli_real_escape_string($yhteys, $_POST['Email']);
-$puhelin=mysqli_real_escape_string($yhteys, $_POST['PuhNro']);
-$otsikko=mysqli_real_escape_string($yhteys, $_POST['Otsikko']);
-$viesti=mysqli_real_escape_string($yhteys, $_POST['Viesti']);
-$tag=mysqli_real_escape_string($yhteys, $_POST['Tag']);
+$etunimi=mysqli_real_escape_string($yhteys, $_POST['etunimi']);
+$sukunimi=mysqli_real_escape_string($yhteys, $_POST['sukunimi']);
+$luokka=mysqli_real_escape_string($yhteys, $_POST['ryhmä']);
+$email=mysqli_real_escape_string($yhteys, $_POST['email']);
+$puhelin=mysqli_real_escape_string($yhteys, $_POST['puhnro']);
+$otsikko=mysqli_real_escape_string($yhteys, $_POST['otsikko']);
+$viesti=mysqli_real_escape_string($yhteys, $_POST['viesti']);
+$tag=mysqli_real_escape_string($yhteys, $_POST['tag']);
 
 $sql="INSERT INTO `Tiketit`(`Etunimi`, `Sukunimi`, `Ryhmä`, `Email`, `PuhNro`, `Otsikko`, `Viesti`, `Tag`)
 VALUES ('$etunimi', '$sukunimi', '$luokka', '$email', '$puhelin', '$otsikko', '$viesti', '$tag')";
