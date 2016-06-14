@@ -7,11 +7,11 @@
 <body>
 
 <?php
-$etunimiErr = $sukunimiErr = $luokkaErr = $emailErr = $puhelinErr = $otsikkoErr = $tagErr = "";
+$etunimiErr = $sukunimiErr = $luokkaErr = $emailErr = $puhelinErr = $otsikkoErr = $viestiErr = $tagErr = "";
 $etunimi = $sukunimi = $luokka = $email = $puhelin = $otsikko = $viesti = $tag = "";
 
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-$valid = true;
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+	$valid = true;
 
 if (empty($_POST["etunimi"])) {
 	$etunimiErr = "Syötä etunimi";
