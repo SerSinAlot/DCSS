@@ -6,7 +6,7 @@ if($link === false) {
   die("Error: could not connect. " . mysqli_connect_error());
 }
 
-$elokuva = mysqli_real_escape_string($elokuva, $_POST['elokuva']);
+$elokuva = mysqli_real_escape_string($link, $_POST['elokuva']);
 
 $sql = "INSERT INTO Elokuvat (Elokuva) Values ('$elokuva')";
   
