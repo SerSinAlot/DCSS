@@ -11,8 +11,11 @@ $etunimiErr = $sukunimiErr = $luokkaErr = $emailErr = $puhelinErr = $otsikkoErr 
 $etunimi = $sukunimi = $luokka = $email = $puhelin = $otsikko = $viesti = $tag = "";
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
+$valid = true;
+
 if (empty($_POST["etunimi"])) {
 	$etunimiErr = "Syötä etunimi";
+	$valid = false;
 	}
 else {
 	$etunimi = testi($_POST["etunimi"]);
@@ -22,6 +25,7 @@ else {
 }
 if (empty($_POST["sukunimi"])) {
 	$sukunimiErr = "Syötä sukunimi";
+	$valid = false;
 	}
 else {
 	$sukunimi = testi($_POST["sukunimi"]);
@@ -31,6 +35,7 @@ else {
 }
 if (empty($_POST["ryhmä"])) {
 	$luokkaErr = "Syötä ryhmä";
+	$valid = false;
 }
 else {
 	$luokka = testi($_POST["ryhmä"]);
@@ -40,6 +45,7 @@ else {
 }
 if (empty($_POST["sähköposti"])) {
 	$emailErr = "Syötä sähköposti";
+	$valid = false;
 	}
 else {
 	$email = testi($_POST["sähköposti"]);
@@ -58,6 +64,7 @@ else {
 }
 if (empty($_POST["otsikko"])) {
 	$otsikkoErr = "Anna otsikko";
+	$valid = false;
 	}
 else {
 	$otsikko = testi($_POST["otsikko"]);
@@ -67,16 +74,23 @@ else {
 }
 if (empty($_POST["viesti"])) {
 	$viestiErr = "Kirjoita viesti";
+	$valid = false;
 	}
 else {
 	$viesti = testi($_POST["viesti"]);
 }
 if (empty($_POST["tag"])) {
 	$tagErr = "Valitse Tag";
+	$valid = false;
 	}
 else {
 	$tag = testi($_POST["tag"]);
 	}
+
+if($valid){
+        header('Location: yhteys.php');
+        exit();
+}
 }
 
 function testi($data) {
@@ -91,7 +105,7 @@ function testi($data) {
 <p1>Hei, kun metsään huutaa, niin DC vastaa.</p1><br><br>
 <p2><span class="error">* pakollinen kenttä.</span></p2><br><br>
 
-  <form method="post" action="yhteys.php">
+  <form method="post" action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']);?>">
 	<label class="otsikko">Etunimi:</label>
 	<div class="kenttä">
 	<input type="text" name="etunimi" placeholder="Etunimi">

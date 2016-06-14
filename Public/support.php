@@ -12,6 +12,7 @@ $etunimi = $sukunimi = $luokka = $email = $puhelin = $otsikko = $viesti = $tag =
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
 if (empty($_POST["etunimi"])) {
+	$etunimi = "";
 	$etunimiErr = "Syötä etunimi";
 	}
 else {
