@@ -9,6 +9,12 @@ if($link === false) {
 $elokuva = mysqli_real_escape_string($link, $_POST['elokuva']);
 
 $sql = "INSERT INTO Elokuvat (Elokuva) Values ('$elokuva')";
+if(mysqli_query($link, $sql)) {
+  echo "Records added succesfully.";
+} else {
+  echo "Error: Could not execute $sql. " . mysqli_error($link);
+}
+}
   
 mysqli_close($link);
   ?>
