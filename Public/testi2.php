@@ -73,26 +73,33 @@ if (!empty($message))
 	echo "<div class='notify'>$success_message</div>";
 }
 ?>
-	<td>Etunimi:</td>
+
+	<table class="demotable">
 	<tr>
-	  <td><input type="text" name="etunimi" value="<?=$fields['etunimi']?>" /></td>
+	<td>Etunimi:</td>
+	  <td><input type="text" name="etunimi" value="<?=$fields['etunimi']?>" placeholder="Etunimi" /></td>
 	</tr>
 	<tr>
 	<td>Sukunimi:</td>
-	  <td><input type="text" name="sukunimi" value="<?=$fields['sukunimi']?>" /></td>
+	  <td><input type="text" name="sukunimi" value="<?=$fields['sukunimi']?>" placeholder="Sukunimi" /></td>
 	</tr>
 	<tr>
 	<td>Email:</td>
-	  <td><input type="text" name="email" value="<?=$fields['email']?>" /></td>
+	  <td><input type="text" name="email" value="<?=$fields['email']?>" placeholder="Email" /></td>
+	</tr>
+	<tr>
+	<td>Puhelin:</td>
+	  <td><input type="text" name="puhelin" value="<?=$fields['puhelin']?>" placeholder="0102345678" /></td>
 	</tr>
 	<tr>
 	<td>Otsikko:</td>
-	  <td><input type="text" name="otsikko" value="<?=$fields['otsikko']?>" /></td>
+	  <td><input type="text" name="otsikko" value="<?=$fields['otsikko']?>" placeholder="Otsikko" /></td>
 	</tr>
 	<tr>
 	<td>Viesti:</td>
-	  <td><input type="text" name="viesti" value="<?=$fields['viesti']?>" /></td>
+	  <td><textarea name="viesti" rows="5" cols="40" maxlength="200" value="<?=$fields['viesti']?>" placeholder="Lyhyt kuvaus tehtävästä (max 200 merkkiä)" /></textarea></td>
 	</tr>
+	</table>
   
   <form method="post" action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']);?>">
 	<label class="otsikko">Etunimi:</label>
