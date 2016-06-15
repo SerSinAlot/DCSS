@@ -9,7 +9,7 @@
 <?php
 $errors = array();
 $fields = array();
-success_message = "";
+$success_message = "";
 
 if (isset($_POST['submit']))
 {
@@ -46,26 +46,40 @@ if (isset($_POST['submit']))
 <p1>Hei, kun metsään huutaa, niin DC vastaa.</p1><br><br>
 <p2><span class="error">* pakollinen kenttä.</span></p2><br><br>
 
+<?php
+
+//if $errors is not empty, loop through and display each
+if (!empty($errors))
+{
+	echo "<div class'error' style='width:100%;'>Korjaa väärin syötetyt tiedot:\n<ul>";
+	foreach ($errors as $error)
+	   echo "<li>$error</li>\n";
+		
+	 echo "</ul></div>";
+}
+
+if (!empty($message))
+{
+	echo "<div class='notify'>$success_message</div>";
+}
+?>
+  
   <form method="post" action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']);?>">
 	<label class="otsikko">Etunimi:</label>
 	<div class="kenttä">
 	<input type="text" name="etunimi" placeholder="Etunimi">
-	<span class="error">* <?php echo $etunimiErr;?></span>
 	</div><br>
 	<label class="otsikko">Sukunimi:</label>
 	<div class="kenttä">
 	<input type="text" name="sukunimi" placeholder="Sukunimi">
-	<span class="error">* <?php echo $sukunimiErr;?></span>
 	</div><br>
 	<label class="otsikko">Ryhmä:</label>
 	<div class="kenttä">
 	<input type="text" name="ryhmä" placeholder="Ryhmätunnus">
-	<span class="error">* <?php echo $luokkaErr;?></span>
 	</div><br>
     	<label class="otsikko">Sähköposti:</label>
 	<div class="kenttä">
 	<input type="text" name="sähköposti" placeholder="nimi@kamk.fi">
-	<span class="error">* <?php echo $emailErr;?></span>
 	</div><br>
 	<label class="otsikko">Puhelin:</label>
 	<div class="kenttä">
@@ -74,17 +88,14 @@ if (isset($_POST['submit']))
 	<label class="otsikko">Otsikko:</label>
 	<div class="kenttä">
 	<input type="text" name="otsikko" placeholder="Otsikko">
-	<span class="error">* <?php echo $otsikkoErr;?></span>
 	</div><br>
 	<label class="otsikko">Viesti:</label>
 	<div class="kenttä">
 	<textarea name="viesti" rows="5" cols="40" maxlength="200" placeholder="Lyhyt kuvaus tehtävästä (max 200 merkkiä)"></textarea>
-	<span class="error">* <?php echo $viestiErr;?></span>
 	</div><br>
 	Tag:
     	<input type="radio" name="tag" value="peliserveri">Peliserveri
     	<input type="radio" name="tag" value="nettisivu">Nettisivu
-	<span class="error">* <?php echo $tagErr;?></span>
 	<br><br>
     <input type="submit" value="Lähetä">
   </form>
