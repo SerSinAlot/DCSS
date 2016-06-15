@@ -13,7 +13,7 @@ function validateFields ($fields, $rules)
 		// continue evaluating the rest of the line. Keep repeating this while the line begins with an 
 		// if-condition. If it fails any of the conditions, don't bother validating the rest of the line
 		$satisfies_if_conditions = true;
-		while (preg_match("/^if:/", "", $row[0]);
+		while (preg_match("/^if:/", "", $row[0])
 		
 		// check if it's a = or != test
 		$comparison = "equal";

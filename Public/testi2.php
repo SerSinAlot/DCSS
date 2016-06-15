@@ -1,11 +1,3 @@
-<!DOCTYPE HTML>
-<html>
-  <head>
-  <link rel="stylesheet" type="text/css" href="style.css">
-    <title>DCSS</title>
-  </head>
-<body>
-
 <?php
 $errors = array();
 $fields = array();
@@ -24,6 +16,7 @@ if (isset($_POST['submit']))
 	$rules[] = "valid_email,email,This field is required";
 	$rules[] = "required,otsikko,This field is required";
 	$rules[] = "required,viesti,This field is required";
+	$rules[] = "required,tag,This field is required";
 	
 	$errors = validateFields($_POST, $rules);
 	
@@ -42,19 +35,25 @@ if (isset($_POST['submit']))
 }
 ?>
 
-<h1>
-Data Center Support System
-</h1>
-<p1>
-Hei, kun metsään huutaa, niin DC vastaa.
-</p1>
-<br>
-<br>
-	<p2>
-	<span class="error">* pakollinen kenttä.</span>
-	</p2>
-<br>
-<br>
+<!DOCTYPE HTML>
+<html>
+  <head>
+  <link rel="stylesheet" type="text/css" href="style.css">
+    <title>DCSS</title>
+  </head>
+<body>
+
+<table cellspacing="0" width="600" align="center">
+<tr>
+  <td>
+
+    <form action="<?=$_SERVER['PHP_SELF']?>" method="post">
+
+    <p class="title"><font size="20">Data Center Support System</font></p>
+    <p>Hei, kun metsään huutaa, niin DC vastaa.</p>
+    <p class="error">* pakollinen kenttä.</p>
+
+<br />
 
 <?php
 
@@ -63,8 +62,7 @@ if (!empty($errors))
 {
 	echo "<div class'error' style='width:100%;'>Korjaa väärin syötetyt tiedot:\n<ul>";
 	foreach ($errors as $error)
-	   echo "<li>$error</li>\n";
-		
+	   echo "<li>$error</li>\n";		
 	 echo "</ul></div>";
 }
 
@@ -76,65 +74,41 @@ if (!empty($message))
 
 	<table class="demotable">
 	<tr>
-	<td>Etunimi:</td>
+	<td>Etunimi:<span class="error"> *</span></td>
 	  <td><input type="text" name="etunimi" value="<?=$fields['etunimi']?>" placeholder="Etunimi" /></td>
 	</tr>
 	<tr>
-	<td>Sukunimi:</td>
+	<td>Sukunimi:<span class="error"> *</span></td>
 	  <td><input type="text" name="sukunimi" value="<?=$fields['sukunimi']?>" placeholder="Sukunimi" /></td>
 	</tr>
 	<tr>
-	<td>Email:</td>
+	<td>Email:<span class="error"> *</span></td>
 	  <td><input type="text" name="email" value="<?=$fields['email']?>" placeholder="Email" /></td>
 	</tr>
 	<tr>
 	<td>Puhelin:</td>
-	  <td><input type="text" name="puhelin" value="<?=$fields['puhelin']?>" placeholder="0102345678" /></td>
+	  <td><span> </span><input type="text" name="puhelin" value="<?=$fields['puhelin']?>" placeholder="0102345678" /></td>
 	</tr>
 	<tr>
-	<td>Otsikko:</td>
+	<td>Otsikko:<span class="error"> *</span></td>
 	  <td><input type="text" name="otsikko" value="<?=$fields['otsikko']?>" placeholder="Otsikko" /></td>
 	</tr>
 	<tr>
-	<td>Viesti:</td>
+	<td>Viesti:<span class="error"> *</span></td>
 	  <td><textarea name="viesti" rows="5" cols="40" maxlength="200" value="<?=$fields['viesti']?>" placeholder="Lyhyt kuvaus tehtävästä (max 200 merkkiä)" /></textarea></td>
 	</tr>
+	<tr>
+	<td>Tag:<span class="error"> *</span></td>
+	  <td>
+	    <input type="radio" name="tag" value="<?php if($fields['tag'] == 'peliserveri') echo 'checked'; ?>" />Peliserveri
+	      <input type="radio" name="tag" value="<?php if($fields['tag'] == 'nettisivu') echo 'checked'; ?>" />Nettisivu
+	  </td>
 	</table>
-  
-  <form method="post" action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']);?>">
-	<label class="otsikko">Etunimi:</label>
-	<div class="kenttä">
-	<input type="text" name="etunimi" placeholder="Etunimi">
-	</div><br>
-	<label class="otsikko">Sukunimi:</label>
-	<div class="kenttä">
-	<input type="text" name="sukunimi" placeholder="Sukunimi">
-	</div><br>
-	<label class="otsikko">Ryhmä:</label>
-	<div class="kenttä">
-	<input type="text" name="ryhmä" placeholder="Ryhmätunnus">
-	</div><br>
-    	<label class="otsikko">Sähköposti:</label>
-	<div class="kenttä">
-	<input type="text" name="sähköposti" placeholder="nimi@kamk.fi">
-	</div><br>
-	<label class="otsikko">Puhelin:</label>
-	<div class="kenttä">
-	<input type="text" name="puhelin" placeholder="0102345678">
-	</div><br>
-	<label class="otsikko">Otsikko:</label>
-	<div class="kenttä">
-	<input type="text" name="otsikko" placeholder="Otsikko">
-	</div><br>
-	<label class="otsikko">Viesti:</label>
-	<div class="kenttä">
-	<textarea name="viesti" rows="5" cols="40" maxlength="200" placeholder="Lyhyt kuvaus tehtävästä (max 200 merkkiä)"></textarea>
-	</div><br>
-	Tag:
-    	<input type="radio" name="tag" value="peliserveri">Peliserveri
-    	<input type="radio" name="tag" value="nettisivu">Nettisivu
-	<br><br>
-    <input type="submit" value="Lähetä">
-  </form>
+
+	<p><input type="submit" name="submit" value="Lähetä" /></p>
+    </td>
+  </tr>
+</table>  
+</form>
 </body>
 </html>
