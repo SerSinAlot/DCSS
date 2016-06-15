@@ -19,7 +19,7 @@ if (isset($_POST['submit']))
 	$rules = array(); // stores validation rules
 	
 	// form fields
-	$rules[] = "required,etunumi,This field is required.";
+	$rules[] = "required,etunimi,This field is required.";
 	$rules[] = "required,sukunimi,This field is required";
 	$rules[] = "valid_email,email,This field is required";
 	$rules[] = "required,otsikko,This field is required";
@@ -78,7 +78,7 @@ if (!empty($message))
 	  <td><input type="text" name="etunimi" value="<?=$fields['etunimi']?>" /></td>
 	</tr>
 	<tr>
-	<td>Sukuimi:</td>
+	<td>Sukunimi:</td>
 	  <td><input type="text" name="sukunimi" value="<?=$fields['sukunimi']?>" /></td>
 	</tr>
 	<tr>
@@ -91,7 +91,7 @@ if (!empty($message))
 	</tr>
 	<tr>
 	<td>Viesti:</td>
-	  <td><input type="text" name="viesti" value="<?=$fields[viesti']?>" /></td>
+	  <td><input type="text" name="viesti" value="<?=$fields['viesti']?>" /></td>
 	</tr>
   
   <form method="post" action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']);?>">
