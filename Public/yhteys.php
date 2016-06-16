@@ -11,12 +11,12 @@ $yhteys = mysqli_connect($servername, $username, $password, $dbname);
 if (!$yhteys) {
 	die("Yhteys epäonnistui: " . mysqli_connect_error());
 }
-echo "Yhteys onnistui";
+echo "Yhteys onnistui. ";
 
 $etunimi=mysqli_real_escape_string($yhteys, @$_POST['etunimi']);
 $sukunimi=mysqli_real_escape_string($yhteys, @$_POST['sukunimi']);
-$luokka=mysqli_real_escape_string($yhteys, @$_POST['ryhmä']);
-$email=mysqli_real_escape_string($yhteys, @$_POST['sähköposti']);
+$luokka=mysqli_real_escape_string($yhteys, @$_POST['luokka']);
+$email=mysqli_real_escape_string($yhteys, @$_POST['email']);
 $puhelin=mysqli_real_escape_string($yhteys, @$_POST['puhelin']);
 $otsikko=mysqli_real_escape_string($yhteys, @$_POST['otsikko']);
 $viesti=mysqli_real_escape_string($yhteys, @$_POST['viesti']);

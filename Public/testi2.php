@@ -11,12 +11,13 @@ if (isset($_POST['submit']))
 	$rules = array(); // stores validation rules
 	
 	// form fields
-	$rules[] = "required,etunimi,This field is required.";
-	$rules[] = "required,sukunimi,This field is required";
-	$rules[] = "valid_email,email,This field is required";
-	$rules[] = "required,otsikko,This field is required";
-	$rules[] = "required,viesti,This field is required";
-	$rules[] = "required,tag,This field is required";
+	$rules[] = "required,etunimi,Syötä etunimi.";
+	$rules[] = "required,sukunimi,Syötä sukunimi.";
+	$rules[] = "required,luokka,Syötä luokkatunnus.";
+	$rules[] = "valid_email,email,Syötä @kamk.fi sähköpostiosoite.";
+	$rules[] = "required,otsikko,Anna viestillesi otsikko.";
+	$rules[] = "required,viesti,Kerro meille huolesi viestikenttään.";
+	$rules[] = "required,tag,Valitse pyyntöösi sopiva tag.";
 	
 	$errors = validateFields($_POST, $rules);
 	
@@ -36,6 +37,7 @@ if (isset($_POST['submit']))
 
 if(!isset($fields["etunimi"])) $fields["etunimi"] = "";
 if(!isset($fields["sukunimi"])) $fields["sukunimi"] = "";
+if(!isset($fields["luokka"])) $fields["luokka"] = "";
 if(!isset($fields["email"])) $fields["email"] = "";
 if(!isset($fields["puhelin"])) $fields["puhelin"] = "";
 if(!isset($fields["otsikko"])) $fields["otsikko"] = "";
@@ -91,6 +93,10 @@ if (!empty($message))
 	  <td><input type="text" name="sukunimi" value="<?=$fields['sukunimi']?>" placeholder="Sukunimi" /></td>
 	</tr>
 	<tr>
+	<td>Ryhmä:<span class="error"> *</span></td>
+	  <td><input type="text" name="luokka" value="<?=$fields['luokka']?>" placeholder="Ryhmätunnus" /></td>
+	</tr>
+	<tr>
 	<td>Email:<span class="error"> *</span></td>
 	  <td><input type="text" name="email" value="<?=$fields['email']?>" placeholder="Email" /></td>
 	</tr>
@@ -109,8 +115,8 @@ if (!empty($message))
 	<tr>
 	<td>Tag:<span class="error"> *</span></td>
 	  <td>
-	    <input type="radio" name="tag" value="<?php if($fields['tag'] == 'peliserveri') echo 'checked'; ?>" />Peliserveri
-	      <input type="radio" name="tag" value="<?php if($fields['tag'] == 'nettisivu') echo 'checked'; ?>" />Nettisivu
+	    <input type="radio" name="tag" value="peliserveri" <?php if($fields['tag'] == 'peliserveri') echo 'checked'; ?> />Peliserveri
+	      <input type="radio" name="tag" value="nettisivu" <?php if($fields['tag'] == 'nettisivu') echo 'checked'; ?> />Nettisivu
 	  </td>
 	</table>
 
