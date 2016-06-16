@@ -33,6 +33,15 @@ if (isset($_POST['submit']))
 		header("Location: yhteys.php");
 	}
 }
+
+if(!isset($fields["etunimi"])) $fields["etunimi"] = "";
+if(!isset($fields["sukunimi"])) $fields["sukunimi"] = "";
+if(!isset($fields["email"])) $fields["email"] = "";
+if(!isset($fields["puhelin"])) $fields["puhelin"] = "";
+if(!isset($fields["otsikko"])) $fields["otsikko"] = "";
+if(!isset($fields["viesti"])) $fields["viesti"] = "";
+if(!isset($fields["tag"])) $fields["tag"] = "";
+
 ?>
 
 <!DOCTYPE HTML>
@@ -60,7 +69,7 @@ if (isset($_POST['submit']))
 //if $errors is not empty, loop through and display each
 if (!empty($errors))
 {
-	echo "<div class'error' style='width:100%;'>Korjaa väärin syötetyt tiedot:\n<ul>";
+	echo "<div class='error' style='width:100%;'>Korjaa väärin syötetyt tiedot:\n<ul>";
 	foreach ($errors as $error)
 	   echo "<li>$error</li>\n";		
 	 echo "</ul></div>";
