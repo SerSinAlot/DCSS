@@ -38,18 +38,18 @@ if (isset($_POST['submit']))
 	else
 	{
 		$message = "Tiedot syötetty onnistuneesti";
-		//header("Location: yhteys.php");
+		header("Location: yhteys.php");
 	}
 }
 
-//if(!isset($fields["etunimi"])) $fields["etunimi"] = "";
-//if(!isset($fields["sukunimi"])) $fields["sukunimi"] = "";
-//if(!isset($fields["luokka"])) $fields["luokka"] = "";
-//if(!isset($fields["email"])) $fields["email"] = "";
-//if(!isset($fields["puhelin"])) $fields["puhelin"] = "";
-//if(!isset($fields["otsikko"])) $fields["otsikko"] = "";
-//if(!isset($fields["viesti"])) $fields["viesti"] = "";
-//if(!isset($fields["tag"])) $fields["tag"] = "";
+if(!isset($fields["etunimi"])) $fields["etunimi"] = "";
+if(!isset($fields["sukunimi"])) $fields["sukunimi"] = "";
+if(!isset($fields["luokka"])) $fields["luokka"] = "";
+if(!isset($fields["email"])) $fields["email"] = "";
+if(!isset($fields["puhelin"])) $fields["puhelin"] = "";
+if(!isset($fields["otsikko"])) $fields["otsikko"] = "";
+if(!isset($fields["viesti"])) $fields["viesti"] = "";
+if(!isset($fields["tag"])) $fields["tag"] = "";
 
 ?>
 
