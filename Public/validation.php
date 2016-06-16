@@ -58,22 +58,6 @@ function validateFields ($fields, $rules)
     		else
       		$error_message = $row[2];    // everything else!
 
-
-    		// if the requirement is "length=...", rename requirement to "length" for switch statement
-		if (preg_match("/^length/", $requirement))
-    		{
-      		  $length_requirements = $requirement;
-      		  $requirement         = "length";
-    		}
-
-		// if the requirement is "range=...", rename requirement to "range" for switch statement
-    		if (preg_match("/^range/", $requirement))
-    		{
-      		  $range_requirements = $requirement;
-      		  $requirement        = "range";
-    		}
-
-
     		// now, validate whatever is required of the field
     		switch ($requirement)
     		{
@@ -83,14 +67,19 @@ function validateFields ($fields, $rules)
         	   break;
 
       		  case "digits_only":       
-        	   if (isset($fields[$field_name]) && preg_match("/\D/", $fields[$field_name]))
+        	   if (isset($fields[$field_name]) && preg_match("/[^0-9]/", $fields[$field_name]))
           	   $errors[] = $error_message;
         	   break;
 
       		  case "letters_only": 
-        	   if (isset($fields[$field_name]) && preg_match("/[^a-zA-Z]/", $fields[$field_name]))
+        	   if (isset($fields[$field_name]) && preg_match("/[^a-zA-ZäÄöÖåÅ]/", $fields[$field_name]))
           	   $errors[] = $error_message;
         	   break;
+
+		  case "letters_digits_only":
+		    if (isset($fields[$field_name]) && preg_match("/[^a-zA-ZäÄöÖåÅ0-9]/", $fields[$field_name]))
+		    $errors[] = $error_message;
+		    break;
 
       		  // doesn't fail if field is empty
 		  case "valid_email":
@@ -98,11 +87,6 @@ function validateFields ($fields, $rules)
 		   if (isset($fields[$field_name]) && !empty($fields[$field_name]) && !preg_match($regexp, $fields[$field_name]))
           	   $errors[] = $error_message;
         	   break;
-        
-      	 	 case "same_as":
-        	  if ($fields[$field_name] != $fields[$field_name2])
-          	  $errors[] = $error_message;
-        	  break;
 	       }
 	}
   return $errors;

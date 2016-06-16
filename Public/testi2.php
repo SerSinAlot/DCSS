@@ -12,11 +12,18 @@ if (isset($_POST['submit']))
 	
 	// form fields
 	$rules[] = "required,etunimi,Syötä etunimi.";
+	$rules[] = "letters_only,etunimi,Vain kirjaimia nimessä.";
 	$rules[] = "required,sukunimi,Syötä sukunimi.";
+	$rules[] = "letters_only,sukunimi,Vain kirjaimia nimessä.";
 	$rules[] = "required,luokka,Syötä luokkatunnus.";
+	$rules[] = "letters_digits_only,luokka,Vain kirjaimia ja numeroita luokkatunnuksessa.";
+	$rules[] = "required,email, Syötä sähköpostiosoite.";
 	$rules[] = "valid_email,email,Syötä @kamk.fi sähköpostiosoite.";
+	$rules[] = "digits_only,puhelin,Syötä puhelinnumero ilman erikoismerkkejä.";
 	$rules[] = "required,otsikko,Anna viestillesi otsikko.";
+	$rules[] = "letters_digits_only,otsikko,Vain kirjaimia ja numeroita otsikossa.";
 	$rules[] = "required,viesti,Kerro meille huolesi viestikenttään.";
+	
 	$rules[] = "required,tag,Valitse pyyntöösi sopiva tag.";
 	
 	$errors = validateFields($_POST, $rules);
@@ -31,18 +38,18 @@ if (isset($_POST['submit']))
 	else
 	{
 		$message = "Tiedot syötetty onnistuneesti";
-		header("Location: yhteys.php");
+		//header("Location: yhteys.php");
 	}
 }
 
-if(!isset($fields["etunimi"])) $fields["etunimi"] = "";
-if(!isset($fields["sukunimi"])) $fields["sukunimi"] = "";
-if(!isset($fields["luokka"])) $fields["luokka"] = "";
-if(!isset($fields["email"])) $fields["email"] = "";
-if(!isset($fields["puhelin"])) $fields["puhelin"] = "";
-if(!isset($fields["otsikko"])) $fields["otsikko"] = "";
-if(!isset($fields["viesti"])) $fields["viesti"] = "";
-if(!isset($fields["tag"])) $fields["tag"] = "";
+//if(!isset($fields["etunimi"])) $fields["etunimi"] = "";
+//if(!isset($fields["sukunimi"])) $fields["sukunimi"] = "";
+//if(!isset($fields["luokka"])) $fields["luokka"] = "";
+//if(!isset($fields["email"])) $fields["email"] = "";
+//if(!isset($fields["puhelin"])) $fields["puhelin"] = "";
+//if(!isset($fields["otsikko"])) $fields["otsikko"] = "";
+//if(!isset($fields["viesti"])) $fields["viesti"] = "";
+//if(!isset($fields["tag"])) $fields["tag"] = "";
 
 ?>
 
@@ -102,7 +109,7 @@ if (!empty($message))
 	</tr>
 	<tr>
 	<td>Puhelin:</td>
-	  <td><span> </span><input type="text" name="puhelin" value="<?=$fields['puhelin']?>" placeholder="0102345678" /></td>
+	  <td><input type="text" name="puhelin" value="<?=$fields['puhelin']?>" placeholder="0102345678" /></td>
 	</tr>
 	<tr>
 	<td>Otsikko:<span class="error"> *</span></td>
@@ -110,7 +117,7 @@ if (!empty($message))
 	</tr>
 	<tr>
 	<td>Viesti:<span class="error"> *</span></td>
-	  <td><textarea name="viesti" rows="5" cols="40" maxlength="200" value="<?=$fields['viesti']?>" placeholder="Lyhyt kuvaus tehtävästä (max 200 merkkiä)" /></textarea></td>
+	  <td><textarea name="viesti" rows="5" cols="40" maxlength="200" placeholder="Lyhyt kuvaus tehtävästä (max 200 merkkiä)" /><?php if(isset($_POST['viesti'])) {echo $_POST['viesti'];} ?></textarea></td>
 	</tr>
 	<tr>
 	<td>Tag:<span class="error"> *</span></td>
@@ -118,6 +125,7 @@ if (!empty($message))
 	    <input type="radio" name="tag" value="peliserveri" <?php if($fields['tag'] == 'peliserveri') echo 'checked'; ?> />Peliserveri
 	      <input type="radio" name="tag" value="nettisivu" <?php if($fields['tag'] == 'nettisivu') echo 'checked'; ?> />Nettisivu
 	  </td>
+	</tr>
 	</table>
 
 	<p><input type="submit" name="submit" value="Lähetä" /></p>
