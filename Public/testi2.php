@@ -88,6 +88,7 @@ if (!empty($message))
 {
 	echo "<div class='notify'>$success_message</div>";
 }
+
 ?>
 
 	<table class="demotable">
