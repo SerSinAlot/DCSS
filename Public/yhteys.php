@@ -4,6 +4,12 @@ $username="webuser";
 $password="Passw0rd";
 $dbname="DCSS";
 
+var_dump($_POST);
+
+foreach ($_POST as $param_name => $param_val){
+	echo nl2br ("Param: $param_name; Value: $param_val \n");
+}
+
 /*Muodosta yhteys*/
 $yhteys = mysqli_connect($servername, $username, $password, $dbname);
 
@@ -13,7 +19,9 @@ if (!$yhteys) {
 }
 echo "Yhteys onnistui. ";
 
-$sql="INSERT INTO `Tiketit`(`Etunimi`, `Sukunimi`, `Luokka`, `Email`, `PuhNro`, `Otsikko`, `Viesti`, `Tag`)
+
+
+$sql="INSERT INTO Tiketit(`Etunimi`, `Sukunimi`, Luokka, `Email`, PuhNro, `Otsikko`, `Viesti`, Tag)
 VALUES ('$etunimi', '$sukunimi', '$luokka', '$email', '$puhelin', '$otsikko', '$viesti', '$tag')";
 if(mysqli_query($yhteys, $sql)) {
 	echo "Tiedot tallennettu onnistuneesti.";
@@ -23,4 +31,6 @@ if(mysqli_query($yhteys, $sql)) {
 }
 
 mysqli_close($yhteys);
+
+var_dump($_POST);
 ?>

@@ -1,4 +1,5 @@
 <?php
+session_start();
 $errors = array();
 $fields = array();
 $success_message = "";
@@ -38,7 +39,15 @@ if (isset($_POST['submit']))
 	else
 	{
 		$message = "Tiedot syötetty onnistuneesti";
-		header("Location: yhteys.php");
+		$_SESSION['etunimi']=$_POST['etunimi'];
+		$_SESSION['sukunimi']=$_POST['sukunimi'];
+		$_SESSION['luokka']=$_POST['luokka'];
+		$_SESSION['email']=$_POST['email'];
+		$_SESSION['puhelin']=$_POST['puhelin'];
+		$_SESSION['otsikko']=$_POST['otsikko'];
+		$_SESSION['viesti']=$_POST['viesti'];
+		$_SESSION['tag']=$_POST['tag'];
+		header("Location: yhteys2.php");
 	}
 }
 

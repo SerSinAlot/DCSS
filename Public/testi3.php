@@ -1,4 +1,5 @@
 <?php
+header('Content-Type: text/html; charset=utf-8');
 $errors = array();
 $fields = array();
 $success_message = "";
@@ -38,7 +39,7 @@ if (isset($_POST['submit']))
 	else
 	{
 		$message = "Tiedot syötetty onnistuneesti";
-
+		
 $servername="192.168.206.159";
 $username="webuser";
 $password="Passw0rd";
@@ -53,10 +54,24 @@ if (!$yhteys) {
 }
 echo "Yhteys onnistui. ";
 
+printf("Current character set: %s\n", mysqli_character_set_name($yhteys));
+
+$etunimi=mysqli_real_escape_string($yhteys, $_POST['etunimi']);
+$sukunimi=mysqli_real_escape_string($yhteys, $_POST['sukunimi']);
+$luokka=mysqli_real_escape_string($yhteys, $_POST['luokka']);
+$email=mysqli_real_escape_string($yhteys, $_POST['email']);
+$puhelin=mysqli_real_escape_string($yhteys, $_POST['puhelin']);
+$otsikko=mysqli_real_escape_string($yhteys, $_POST['otsikko']);
+$viesti=mysqli_real_escape_string($yhteys, $_POST['viesti']);
+$tag=mysqli_real_escape_string($yhteys, $_POST['tag']);
+
+utf8_encode('etunimi');
+
 $sql="INSERT INTO `Tiketit`(`Etunimi`, `Sukunimi`, `Luokka`, `Email`, `PuhNro`, `Otsikko`, `Viesti`, `Tag`)
 VALUES ('$etunimi', '$sukunimi', '$luokka', '$email', '$puhelin', '$otsikko', '$viesti', '$tag')";
 if(mysqli_query($yhteys, $sql)) {
 	echo "Tiedot tallennettu onnistuneesti.";
+	var_dump($_POST);
 } else {
 		echo "Virhe: tietojen tallennus epäonnistui." .
 		mysqli_error($yhteys);
@@ -80,7 +95,8 @@ if(!isset($fields["tag"])) $fields["tag"] = "";
 <!DOCTYPE HTML>
 <html>
   <head>
-  <link rel="stylesheet" type="text/css" href="style.css">
+   <meta content="text/html; charset=utf-8"></meta>
+   <link rel="stylesheet" type="text/css" href="style.css">
     <title>DCSS</title>
   </head>
 <body>
@@ -89,7 +105,7 @@ if(!isset($fields["tag"])) $fields["tag"] = "";
 <tr>
   <td>
 
-    <form action="<?=$_SERVER['PHP_SELF']?>" method="post">
+    <form action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']);?>" method="post" accept-charset="utf-8">
 
     <p class="title"><font size="20">Data Center Support System</font></p>
     <p>Hei, kun metsään huutaa, niin DC vastaa.</p>
@@ -146,8 +162,8 @@ if (!empty($message))
 	<tr>
 	<td>Tag:<span class="error"> *</span></td>
 	  <td>
-	    <input type="radio" name="tag" value="peliserveri" <?php if($fields['tag'] == 'peliserveri') echo 'checked'; ?> />Peliserveri
-	      <input type="radio" name="tag" value="nettisivu" <?php if($fields['tag'] == 'nettisivu') echo 'checked'; ?> />Nettisivu
+	    <input type="radio" name="tag" value="Peliserveri" <?php if($fields['tag'] == 'peliserveri') echo 'checked'; ?> />Peliserveri
+	      <input type="radio" name="tag" value="Nettisivu" <?php if($fields['tag'] == 'nettisivu') echo 'checked'; ?> />Nettisivu
 	  </td>
 	</tr>
 	</table>
