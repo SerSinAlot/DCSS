@@ -24,7 +24,7 @@ if (isset($_POST['submit']))
 	$rules[] = "required,otsikko,Anna viestillesi otsikko.";
 	$rules[] = "letters_digits_only,otsikko,Vain kirjaimia ja numeroita otsikossa.";
 	$rules[] = "required,viesti,Kerro meille huolesi viestikenttään.";
-	$rules[] = "textbox,viesti,Vain kirjaimia ja numeroita sekä tavallisimmat erikoismerkit.";	
+	$rules[] = "textbox,viesti,Vain kirjaimia ja numeroita sekä tavallisimpia erikoismerkkejä viestikenttään.";	
 	$rules[] = "required,tag,Valitse pyyntöösi sopiva tag.";
 	
 	$errors = validateFields($_POST, $rules);
@@ -65,8 +65,6 @@ $otsikko=mysqli_real_escape_string($yhteys, $_POST['otsikko']);
 $viesti=mysqli_real_escape_string($yhteys, $_POST['viesti']);
 $tag=mysqli_real_escape_string($yhteys, $_POST['tag']);
 
-utf8_encode('etunimi');
-
 $sql="INSERT INTO `Tiketit`(`Etunimi`, `Sukunimi`, `Luokka`, `Email`, `PuhNro`, `Otsikko`, `Viesti`, `Tag`)
 VALUES ('$etunimi', '$sukunimi', '$luokka', '$email', '$puhelin', '$otsikko', '$viesti', '$tag')";
 if(mysqli_query($yhteys, $sql)) {
@@ -90,6 +88,12 @@ if(!isset($fields["otsikko"])) $fields["otsikko"] = "";
 if(!isset($fields["viesti"])) $fields["viesti"] = "";
 if(!isset($fields["tag"])) $fields["tag"] = "";
 
+function testi3($data) {
+	$data=trim($data);
+	$data=stripcslashes($data);
+	$data=htmlspecialchars($data);
+	return $data;
+}
 ?>
 
 <!DOCTYPE HTML>
