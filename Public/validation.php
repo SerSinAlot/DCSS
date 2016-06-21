@@ -83,7 +83,18 @@ function validateFields ($fields, $rules)
 
       		  // doesn't fail if field is empty
 		  case "valid_email":
-		   $regexp="/^[a-z0-9]+([_+\\.-][a-z0-9]+)*@([a-z0-9]+([\.-][a-z0-9]+)*)+\\.[a-z]{2,}$/i";    
+		   $regexp="/^[a-z0-9]+([_+\\.-][a-z0-9]+)*@([a-z0-9]+([\.-][a-z0-9]+)*)+\\.[a-z]{2,}$/i";
+		   $email = $_POST['email'];
+		   $allowed = array('kamk.fi');
+		   if(filter_var($email, FILTER_VALIDATE_EMAIL))
+		   {
+			$explodedEmail = explode('@', $email);
+			$domain = array_pop($explodedEmail);
+			if(!in_array($domain, $allowed))
+			{
+			$errors[] = $error_message;
+			}
+		   }
 		   if (isset($fields[$field_name]) && !empty($fields[$field_name]) && !preg_match($regexp, $fields[$field_name]))
           	   $errors[] = $error_message;
         	   break;

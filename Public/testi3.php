@@ -64,16 +64,23 @@ $tag=mysqli_real_escape_string($yhteys, $_POST['tag']);
 
 $sql="INSERT INTO `Tiketit`(`Etunimi`, `Sukunimi`, `Luokka`, `Email`, `PuhNro`, `Otsikko`, `Viesti`, `Tag`)
 VALUES ('$etunimi', '$sukunimi', '$luokka', '$email', '$puhelin', '$otsikko', '$viesti', '$tag')";
-if(mysqli_query($yhteys, $sql)) {
+
+if(mysqli_query($yhteys, $sql)) 
+{
 	echo "Tiedot tallennettu onnistuneesti.";
-} else {
+} 
+else 
+{
 		echo "Virhe: tietojen tallennus epäonnistui." .
 		mysqli_error($yhteys);
 }
 
 mysqli_close($yhteys);
 }
-}
+$subject = 'Kiitos yhteydenotosta!';
+$message = 'Osaava ja innokas yhteisömme ottaa tehtävän hoidettavakseen, kunhan kiireiltään ehtii.';
+mail($email, $subject, $message);
+	}
 
 if(!isset($fields["etunimi"])) $fields["etunimi"] = "";
 if(!isset($fields["sukunimi"])) $fields["sukunimi"] = "";
@@ -132,7 +139,7 @@ if (!empty($message))
 
 	<table class="demotable">
 	<tr>
-	<td>Hetunimi:<span class="error"> *</span></td>
+	<td>Etunimi:<span class="error"> *</span></td>
 	  <td><input type="text" name="etunimi" value="<?=$fields['etunimi']?>" placeholder="Etunimi" /></td>
 	</tr>
 	<tr>
@@ -162,8 +169,8 @@ if (!empty($message))
 	<tr>
 	<td>Tag:<span class="error"> *</span></td>
 	  <td>
-	    <input type="radio" name="tag" value="Peliserveri" <?php if($fields['tag'] == 'peliserveri') echo 'checked'; ?> />Peliserveri
-	      <input type="radio" name="tag" value="Nettisivu" <?php if($fields['tag'] == 'nettisivu') echo 'checked'; ?> />Nettisivu
+	    <input type="radio" name="tag" value="peliserveri" <?php if($fields['tag'] == 'peliserveri') echo 'checked'; ?> />Peliserveri
+	      <input type="radio" name="tag" value="nettisivu" <?php if($fields['tag'] == 'nettisivu') echo 'checked'; ?> />Nettisivu
 	  </td>
 	</tr>
 	</table>
