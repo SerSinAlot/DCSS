@@ -24,7 +24,7 @@ if (isset($_POST['submit']))
 	$rules[] = "required,otsikko,Anna viestillesi otsikko.";
 	$rules[] = "letters_digits_only,otsikko,Vain kirjaimia ja numeroita otsikossa.";
 	$rules[] = "required,viesti,Kerro meille huolesi viestikenttään.";
-	
+	$rules[] = "textbox,viesti,Vain kirjaimia ja numeroita sekä tavallisimmat erikoismerkit.";	
 	$rules[] = "required,tag,Valitse pyyntöösi sopiva tag.";
 	
 	$errors = validateFields($_POST, $rules);
@@ -157,7 +157,7 @@ if (!empty($message))
 	</tr>
 	<tr>
 	<td>Viesti:<span class="error"> *</span></td>
-	  <td><textarea name="viesti" rows="5" cols="40" maxlength="200" placeholder="Lyhyt kuvaus tehtävästä (max 200 merkkiä)" /><?php if(isset($_POST['viesti'])) {echo $_POST['viesti'];} ?></textarea></td>
+	  <td><textarea name="viesti" rows="5" cols="40" maxlength="200" placeholder="Lyhyt kuvaus tehtävästä (max 200 merkkiä). Sallittuja erikoismerkkejä (-.,!?€&*+)." /><?php if(isset($_POST['viesti'])) {echo $_POST['viesti'];} ?></textarea></td>
 	</tr>
 	<tr>
 	<td>Tag:<span class="error"> *</span></td>

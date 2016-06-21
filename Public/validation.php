@@ -72,7 +72,7 @@ function validateFields ($fields, $rules)
         	   break;
 
       		  case "letters_only": 
-        	   if (isset($fields[$field_name]) && preg_match("/[^a-zA-ZäÄöÖåÅ]/", $fields[$field_name]))
+        	   if (isset($fields[$field_name]) && preg_match("/[^a-zA-ZäÄöÖåÅ-]/", $fields[$field_name]))
           	   $errors[] = $error_message;
         	   break;
 
@@ -87,6 +87,12 @@ function validateFields ($fields, $rules)
 		   if (isset($fields[$field_name]) && !empty($fields[$field_name]) && !preg_match($regexp, $fields[$field_name]))
           	   $errors[] = $error_message;
         	   break;
+
+		  case "textbox":
+		    if (isset($fields[$field_name]) && preg_match("/[^a-zA-ZäÄöÖåÅ0-9-.,!?€&*+]/", $fields[$field_name]));
+		    $errors[] = $error_message;
+		    break;
+
 	       }
 	}
   return $errors;
