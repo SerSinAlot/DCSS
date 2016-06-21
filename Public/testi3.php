@@ -67,20 +67,21 @@ VALUES ('$etunimi', '$sukunimi', '$luokka', '$email', '$puhelin', '$otsikko', '$
 
 if(mysqli_query($yhteys, $sql)) 
 {
-	echo "Tiedot tallennettu onnistuneesti.";
+	$success = "Tiedot tallennettu onnistuneesti.";
+	echo $success;
 } 
 else 
 {
-		echo "Virhe: tietojen tallennus epäonnistui." .
-		mysqli_error($yhteys);
+	echo "Virhe: sinun sähköpostiosoitteellasi on olemassa avoin tiketti.";
+	$fields = $_POST;
 }
 
 mysqli_close($yhteys);
 }
 $subject = 'Kiitos yhteydenotosta!';
 $message = 'Osaava ja innokas yhteisömme ottaa tehtävän hoidettavakseen, kunhan kiireiltään ehtii.';
-mail($email, $subject, $message);
-	}
+//mail($email, $subject, $message);
+}
 
 if(!isset($fields["etunimi"])) $fields["etunimi"] = "";
 if(!isset($fields["sukunimi"])) $fields["sukunimi"] = "";
@@ -91,7 +92,8 @@ if(!isset($fields["otsikko"])) $fields["otsikko"] = "";
 if(!isset($fields["viesti"])) $fields["viesti"] = "";
 if(!isset($fields["tag"])) $fields["tag"] = "";
 
-function testi3($data) {
+function testi3($data)
+{
 	$data=trim($data);
 	$data=stripcslashes($data);
 	$data=htmlspecialchars($data);
@@ -164,7 +166,7 @@ if (!empty($message))
 	</tr>
 	<tr>
 	<td>Viesti:<span class="error"> *</span></td>
-	  <td><textarea name="viesti" rows="5" cols="40" maxlength="200" placeholder="Lyhyt kuvaus tehtävästä (max 200 merkkiä). Sallittuja erikoismerkkejä (-.,!?€&*+)." /><?php if(isset($_POST['viesti'])) {echo $_POST['viesti'];} ?></textarea></td>
+	  <td><textarea name="viesti" rows="5" cols="40" maxlength="200" placeholder="Lyhyt kuvaus tehtävästä (max 200 merkkiä). Sallittuja erikoismerkkejä (-.,!?€&*+)." /><?php if(isset($_POST['viesti'])) {if(!isset($success)){echo $_POST['viesti'];}} ?></textarea></td>
 	</tr>
 	<tr>
 	<td>Tag:<span class="error"> *</span></td>
