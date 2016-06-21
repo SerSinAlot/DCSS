@@ -132,7 +132,7 @@ if (!empty($message))
 
 	<table class="demotable">
 	<tr>
-	<td>Etunimi:<span class="error"> *</span></td>
+	<td>Hetunimi:<span class="error"> *</span></td>
 	  <td><input type="text" name="etunimi" value="<?=$fields['etunimi']?>" placeholder="Etunimi" /></td>
 	</tr>
 	<tr>
