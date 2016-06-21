@@ -54,8 +54,6 @@ if (!$yhteys) {
 }
 echo "Yhteys onnistui. ";
 
-printf("Current character set: %s\n", mysqli_character_set_name($yhteys));
-
 $etunimi=mysqli_real_escape_string($yhteys, $_POST['etunimi']);
 $sukunimi=mysqli_real_escape_string($yhteys, $_POST['sukunimi']);
 $luokka=mysqli_real_escape_string($yhteys, $_POST['luokka']);
@@ -69,7 +67,6 @@ $sql="INSERT INTO `Tiketit`(`Etunimi`, `Sukunimi`, `Luokka`, `Email`, `PuhNro`, 
 VALUES ('$etunimi', '$sukunimi', '$luokka', '$email', '$puhelin', '$otsikko', '$viesti', '$tag')";
 if(mysqli_query($yhteys, $sql)) {
 	echo "Tiedot tallennettu onnistuneesti.";
-	var_dump($_POST);
 } else {
 		echo "Virhe: tietojen tallennus epäonnistui." .
 		mysqli_error($yhteys);
