@@ -5,21 +5,9 @@ background-color: white;
 
 .error {color: #E70A0A;}
 
-/* Tällä muokataan otsikon näköisyyttä */
-h1 {
-color: #880000;
-margin-left: 20px;
-}
-
-/* Tekstin muokkaus */
-p1, p2 {
-color: #881100;
-margin-left: 20px;
-}
-
-/*Lomakkeen muokkaus*/
+*Lomakkeen muokkaus*/
 form {
-	margin-left: 20px;
+        margin-left: 20px;
 }
 
 /*Viestikentän muokkaus*/
