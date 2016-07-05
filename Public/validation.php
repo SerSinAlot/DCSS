@@ -1,4 +1,6 @@
 <?php
+require_once "recaptchalib.php";
+
 function validateFields ($fields, $rules)
 {
 	$errors = array();
@@ -77,7 +79,7 @@ function validateFields ($fields, $rules)
         	   break;
 
 		  case "letters_digits_only":
-		    if (isset($fields[$field_name]) && preg_match("/[^a-zA-ZäÄöÖåÅ0-9]/", $fields[$field_name]))
+		    if (isset($fields[$field_name]) && preg_match("/[^a-zA-ZäÄöÖåÅ0-9 ]/", $fields[$field_name]))
 		    $errors[] = $error_message;
 		    break;
 
@@ -104,8 +106,26 @@ function validateFields ($fields, $rules)
 		    $errors[] = $error_message;
 		    break;
 
+		  case "captcha":
+		    $secret = "6Le7SyQTAAAAAD5nFCr7CNGlL-QSWe2_hu4Z7fRv";
+		    $response = null;
+		    $reCaptcha = new ReCaptcha($secret);
+
+        	    if($_POST["g-recaptcha-response"])
+        	    {
+			$response = $reCaptcha->verifyResponse
+         	    (
+         		$_SERVER["REMOTE-ADDR"],
+		        $_POST["g-recaptcha-response"]
+        	    );
+        	    }
+        	    if($response === null)
+        	    {
+                	$errors[] = $error_message;
+        	    }
+		    break;
 	       }
 	}
   return $errors;
-}
+}﻿
 ?>

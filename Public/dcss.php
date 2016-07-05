@@ -25,6 +25,7 @@ if (isset($_POST['submit']))
 	$rules[] = "required,viesti,Kerro meille huolesi viestikenttään.";
 	$rules[] = "textbox,viesti,Vain kirjaimia ja numeroita sekä sallittuja erikoismerkkejä viestikenttään.";	
 	$rules[] = "required,tag,Valitse pyyntöösi sopiva tag.";
+	$rules[] = "captcha,captcha,Oletko kenties robotti?";
 	
 	$errors = validateFields($_POST, $rules);
 	
@@ -34,7 +35,7 @@ if (isset($_POST['submit']))
 		$fields = $_POST;
 	}
 	
-	// no errors! redirect to yhteys.php
+	// no errors!
 	else
 	{
 		$message = "Tiedot syötetty onnistuneesti";
@@ -79,7 +80,13 @@ else
 mysqli_close($yhteys);
 }
 $subject = 'Kiitos yhteydenotosta!';
-$message = 'Osaava ja innokas yhteisömme ottaa tehtävän hoidettavakseen, kunhan kiireiltään ehtii.';
+$message = 'Tämä on automaattinen vastausviesti, ethän lähetä sähköpostia tähän osoitteeseen. Kiitos!
+
+Osaava ja innokas yhteisömme ottaa tehtävän hoidettavakseen, kunhan kiireiltään ehtii. Muistathan ettemme voi kaikkia toiveitanne toteuttaa :)
+
+Terveisin
+Datacenter -opiskelijat';
+
 //mail($email, $subject, $message);
 }
 
@@ -92,7 +99,7 @@ if(!isset($fields["otsikko"])) $fields["otsikko"] = "";
 if(!isset($fields["viesti"])) $fields["viesti"] = "";
 if(!isset($fields["tag"])) $fields["tag"] = "";
 
-function testi3($data)
+function dcss($data)
 {
 	$data=trim($data);
 	$data=stripcslashes($data);
@@ -107,6 +114,7 @@ function testi3($data)
    <meta content="text/html; charset=utf-8"></meta>
    <link rel="stylesheet" type="text/css" href="style.css">
     <title>DCSS</title>
+    <script src='https://www.google.com/recaptcha/api.js'></script>
   </head>
 <body>
 
@@ -117,7 +125,7 @@ function testi3($data)
     <form action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']);?>" method="post" accept-charset="utf-8">
 
     <p class="title"><font size="20">Data Center Support System</font></p>
-    <p>Hei, kun metsään huutaa, niin DC vastaa.</p>
+    <p>Tervetuloa käyttämään tukijärjestelmäämme. Täytä ainakin pakolliset kentät ja lähetä tukipyyntösi meille. Otathan huomioon, ettemme hoida KamIT:lle kuuluvia töitä. Kiitos!</p>
     <p class="error">* pakollinen kenttä.</p>
 
 <br />
@@ -172,8 +180,16 @@ if (!empty($message))
 	<td>Tag:<span class="error"> *</span></td>
 	  <td>
 	    <input type="radio" name="tag" value="peliserveri" <?php if($fields['tag'] == 'peliserveri') echo 'checked'; ?> />Peliserveri
-	      <input type="radio" name="tag" value="nettisivu" <?php if($fields['tag'] == 'nettisivu') echo 'checked'; ?> />Nettisivu
+	    <input type="radio" name="tag" value="nettisivu" <?php if($fields['tag'] == 'nettisivu') echo 'checked'; ?> />Nettisivu
+	    <input type="radio" name="tag" value="muu" <?php if($fields['tag'] == 'muu') echo 'checked'; ?> />Muu
 	  </td>
+	</tr>
+	<tr>
+	<td>
+	  <td>
+	    <div name="captcha" class="g-recaptcha" data-sitekey="6Le7SyQTAAAAAPjLB_AKZ94yjsNqIEIoTBWhsGkO"></div>
+	  </td>
+	</td>
 	</tr>
 	</table>
 
