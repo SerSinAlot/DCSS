@@ -3,7 +3,7 @@ error_reporting(E_ALL);
 ini_set('display_errors', 1);
 
 echo "<table style='border: solid 1px black;'>";
-echo "<tr><th>Id</th><th>Etunimi</th><th>Sukunimi</th></tr>";
+echo "<tr><th>Id</th><th>Etunimi</th><th>Sukunimi</th><th>Luokka</th><th>Email</th><th>PuhNro</th><th>Otsikko</th><th>Viesti</th><th>Tag</th><th>PVM</th><th>";
 
 class TableRows extends RecursiveIteratorIterator {
 	function _construct($it) {
@@ -26,15 +26,17 @@ class TableRows extends RecursiveIteratorIterator {
 $servername = "192.168.206.159";
 $username = "dcuser";
 $password = "Passw0rd";
-$dbname = "DCSS";
+$dbname = "DCSS"
+
+$query1 = "SELECT * FROM Tiketit ORDER BY Pvm DESC";
 
 try {
 	$conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
 	$conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-	$stmt = $conn->prepare("SELECT ID, Etunimi, Sukunimi FROM Tiketit");
+	$stmt = $conn->prepare($query1);
 	$stmt->execute();
 
-	$result = $stmt->setFetchMode(PDO__FETCH_ASSOC);
+	$result = $stmt->setFetchMode(PDO::FETCH_ASSOC);
 	foreach(new TableRows(new RecursiveArrayIterator($stmt->fetchAll())) as  $k=>$v){
 		echo $v;
 	}
