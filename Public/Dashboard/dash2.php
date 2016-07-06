@@ -2,8 +2,9 @@
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
 
-echo "<table style='border: solid 1px black;'>";
-echo "<tr><th>Id</th><th>Etunimi</th><th>Sukunimi</th><th>Luokka</th><th>Email</th><th>PuhNro</th><th>Otsikko</th><th>Viesti</th><th>Tag</th><th>PVM</th><th>";
+//<link rel='stylesheet' type='text/css' href='style.css' />
+
+//echo "<table style='border: solid 1px black;'>";
 
 class TableRows extends RecursiveIteratorIterator {
 	function _construct($it) {
@@ -26,7 +27,7 @@ class TableRows extends RecursiveIteratorIterator {
 $servername = "192.168.206.159";
 $username = "dcuser";
 $password = "Passw0rd";
-$dbname = "DCSS"
+$dbname = "DCSS";
 
 $query1 = "SELECT * FROM Tiketit ORDER BY Pvm DESC";
 
@@ -45,5 +46,5 @@ catch(PDOException $e) {
 	echo "Error: " . $e->getMessage();
 }
 $conn = null;
-echo "</table>";
+//echo "</table>";
 ?>

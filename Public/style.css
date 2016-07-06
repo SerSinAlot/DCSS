@@ -1,11 +1,18 @@
-/* Tällä muokataan koko sivun näköisyyttä */
+/*Tällä muokataan koko sivun näköisyyttä*/
 body {
 background-color: white;
 }
 
 .error {color: #E70A0A;}
+.link {color: #1E90FF; margin-left: 20px;}
 
-*Lomakkeen muokkaus*/
+/*Otsikon muokkaus*/
+.title {}
+
+/*Otsikkotekstin muokkaus*/
+.titletext {}
+
+/*Lomakkeen muokkaus*/
 form {
         margin-left: 20px;
 }

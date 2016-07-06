@@ -121,11 +121,12 @@ function dcss($data)
 <table cellspacing="0" width="600" align="center">
 <tr>
   <td>
+<a class="link" href="dcssen.php">In English</a>
 
     <form action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']);?>" method="post" accept-charset="utf-8">
 
     <p class="title"><font size="20">Data Center Support System</font></p>
-    <p>Tervetuloa käyttämään tukijärjestelmäämme. Täytä ainakin pakolliset kentät ja lähetä tukipyyntösi meille. Otathan huomioon, ettemme hoida KamIT:lle kuuluvia töitä. Kiitos!</p>
+    <p class="titletext">Tervetuloa käyttämään tukijärjestelmäämme. Täytä ainakin pakolliset kentät ja lähetä tukipyyntösi meille. Otathan huomioon, ettemme hoida KamIT:lle kuuluvia töitä. Kiitos!</p>
     <p class="error">* pakollinen kenttä.</p>
 
 <br />
