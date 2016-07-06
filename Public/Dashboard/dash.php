@@ -15,8 +15,8 @@ die("Yhteys epäonnistui: " . mysqli_connect_error());
 echo "Yhteys onnistui";
 
 $sql = sprintf("SELECT * FROM Tiketit",
-mysqli_real_escape_string($etunimi),
-mysqli_real_escape_string($sukunimi),
+$etunimi = mysqli_real_escape_string('etunimi'),
+$sukunimi = mysqli_real_escape_string('sukunimi'),
 mysqli_real_escape_string($luokka),
 mysqli_real_escape_string($email),
 mysqli_real_escape_string($puhnro),
